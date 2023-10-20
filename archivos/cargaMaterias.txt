@@ -1,0 +1,11 @@
+1,Matemáticas,Tercer piso al final del pasillo a la derecha,0
+2,Ciencias,Cuarto piso en el ala este del edificio principal,0
+3,Inglés,Segundo piso en el bloque de idiomas,0
+4,Historia,Tercer piso en el ala histórica,0
+5,Literatura,Primer piso en la biblioteca,0
+6,Geografía,Cuarto piso en el ala de ciencias sociales,0
+7,Educación Física,Gimnasio en el sótano,0
+8,Arte,Segundo piso en el ala de artes plásticas,0
+9,Música,Primer piso en la sala de música,0
+10,Tecnología,Tercer piso en el laboratorio de informática,0
+11,No Tiene, N/A,0

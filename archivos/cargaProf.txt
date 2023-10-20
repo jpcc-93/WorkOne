@@ -1,0 +1,4 @@
+Jaime Uribe,198765,M,241215,1,2,10
+Noralba Zapata,258796,F,3112487,4,8,10
+Doris henao,43875987,F,587896,3,5,0
+Jafet soto, 78954,M,258746,6,7,9
