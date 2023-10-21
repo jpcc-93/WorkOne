@@ -5,9 +5,10 @@ public class Profesor extends Persona {
     Materia m1 = null;
     Materia m2 = null;
     Materia m3 = null;
-
     String nombre;
 
+    public Profesor() {
+    }
 
     public Profesor(Materia m1, Materia m2, Materia m3) {
         this.m1 = m1;
@@ -51,22 +52,6 @@ public class Profesor extends Persona {
         this.m3 = m3;
     }
 
-    public void mostrardatos(){
-        JOptionPane.showMessageDialog(null,"Nombre: "+this.nombre+ "\nMaterias: "+m1.getNombre()+
-                ", " + m2.getNombre() + ", "+m3.getNombre());
-
-    }
-
-    public void mostrarTodos(Profesor[] profesores){
-        String mensajeprofesores = "Lista Profesores: \n";
-        for (int i = 0; i < 4; i++){
-            mensajeprofesores +=  "Nonbre: " +profesores[i].getNombre() + " Identificacion: "+ profesores[i].getiD()+"\n"
-            + "Dicta las materias: \n" + profesores[i].getM1().getNombre() + " , "+ profesores[i].getM2().getNombre() + " , "+ profesores[i].getM3().getNombre() + "\n";
-        }
-        JOptionPane.showMessageDialog(null,mensajeprofesores);
-
-
-    }
 
 
 

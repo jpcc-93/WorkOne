@@ -11,13 +11,11 @@ public class ListaAlum {
     public ListaAlum() {
         sizeL = validarTamano();
         this.alumnos = new Alumno[sizeL];
-        Materia[] materias;
-        materias = ListaMat.cargarMaterias();
+        ListaMat materias = new ListaMat();
+
         for (int i = 0; i < sizeL; i ++) {
-            alumnos[i] = new Alumno(materias);
-
+            alumnos[i] = new Alumno(materias.getMaterias());
         }
-
     }
 
 // se usa para validar la cantidad de datos que contiene el archivo plano
@@ -39,7 +37,7 @@ public class ListaAlum {
         return sizeL;
     }
 
-    public void cargarCurso(Materia[] materias){
+    public void cargarCurso(ListaMat materias){
 
         String nombreArchivo = "archivos/carga.txt";
 
@@ -53,7 +51,7 @@ public class ListaAlum {
                 String[] partes = linea.split(",");
                 if(partes.length == 14){
 
-                    Alumno alumno = new Alumno(materias);
+                    Alumno alumno = new Alumno(materias.getMaterias());
 
                     alumno.setNombre(partes[0]);
                     alumno.setiD(partes[1]);
@@ -71,10 +69,10 @@ public class ListaAlum {
 
                     alumno.setPromedio(alumno.getPromedio()/10);
 
-                    alumnos[i] = alumno;
+                    this.alumnos[i] = alumno;
 
 
-                    nombres += (alumnos[i].getNombre()) + "\n";
+                    nombres += (this.alumnos[i].getNombre()) + "\n";
 
                     i ++;
 
@@ -96,5 +94,55 @@ public class ListaAlum {
             mensajeAlumnos +=  "Nombre: " +alumnos[i].getNombre() + " Identificacion: "+ alumnos[i].getiD()+ "\n" ;
         }
         JOptionPane.showMessageDialog(null,mensajeAlumnos);
+    }
+
+    public void mostrarHganan(){
+        String mensajeAlumnos = "Lista estudiantes hombres que ganan: \n";
+        for (int i = 0; i < sizeL; i++){
+            System.out.println(alumnos[i].getPromedio());
+            if(alumnos[i].getPromedio() >= 3 && alumnos[i].getGenero().equals("M")) {
+                mensajeAlumnos += "\nNonbre: " + alumnos[i].getNombre() + " Identificacion: " +
+                        alumnos[i].getiD() + "\n" + "Promedio: " + String.format("%.2f",alumnos[i].getPromedio());
+            }
+        }
+        JOptionPane.showMessageDialog(null,mensajeAlumnos);
+
+    }
+
+    public void mostrarFganan(){
+        String mensajeAlumnos = "Lista estudiantes: \n";
+        for (int i = 0; i < 15; i++){
+            System.out.println(alumnos[i].getPromedio());
+            if(alumnos[i].getPromedio() >= 3 && alumnos[i].getGenero().equals("F")) {
+                mensajeAlumnos += "\nNonbre: " + alumnos[i].getNombre() + " Identificacion: " +
+                        alumnos[i].getiD() + "\n" + "Promedio: " + String.format("%.2f",alumnos[i].getPromedio());
+            }
+        }
+        JOptionPane.showMessageDialog(null,mensajeAlumnos);
+
+    }
+    public void mostrarpromedio38(){
+        String mensajeAlumnos = "Lista estudiantes: \n";
+        for (int i = 0; i < 15; i++){
+            System.out.println(alumnos[i].getPromedio());
+            if(alumnos[i].getPromedio() >= 3.8 ) {
+                mensajeAlumnos += "\nNonbre: " + alumnos[i].getNombre() + " Identificacion: " +
+                        alumnos[i].getiD() + "\n" + "Promedio: " + String.format("%.2f",alumnos[i].getPromedio());
+            }
+        }
+        JOptionPane.showMessageDialog(null,mensajeAlumnos);
+    }
+    public void buscar(){
+        float opcion = 0;
+        String mensajeAlumnos = "Lista estudiantes: \n";
+        for (int i = 0; i < sizeL; i++){
+            mensajeAlumnos +=  "Nonbre: " +alumnos[i].getNombre() + " Identificacion: "+ alumnos[i].getiD()+ "\n" ;
+        }
+        opcion = Integer.parseInt(JOptionPane.showInputDialog(null,mensajeAlumnos));
+        for (int i = 0; i < sizeL; i++){
+            if (opcion == Float.parseFloat(alumnos[i].getiD())){
+                alumnos[i].mostrarnotas();
+            }
+        }
     }
 }

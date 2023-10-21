@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,12 +7,32 @@ public class ListaMat {
 
 
 
+    Materia[] materias;
+    int sizeM;
 
-    public static Materia[] cargarMaterias() {
+
+    public Materia[] getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(Materia[] materias) {
+        this.materias = materias;
+    }
+
+    public ListaMat(){
+        sizeM = validarTamano();
+        this.materias = new Materia[sizeM];
+        for (int i= 0; i<sizeM;i++){
+            materias[i] = new Materia();
+        }
+    }
+
+
+
+
+    public  Materia[] cargarMaterias() {
         int sizeM = validarTamano();
         String nombreArchivo = "archivos/cargaMaterias.txt";
-        Materia[] materias = new Materia[sizeM];
-        String nombres = "";
         try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
             int i = 0;
@@ -24,13 +45,10 @@ public class ListaMat {
                     materia.setDescripcion(partes[2]);
                     materia.setNota(Float.parseFloat(partes[3]));
                     materias[i] = materia;
-                    nombres += materia.getCodigoMateria() + " " + materia.getNombre() + "\n";
                     i++;
                 }
 
             }
-//            JOptionPane.showMessageDialog(null, nombres);
-
         } catch (IOException e) {
             System.err.println("Error al cargar materias desde archivo: " + e.getMessage());
         }
@@ -42,22 +60,23 @@ public class ListaMat {
         String nombreArchivo = "archivos/cargaMaterias.txt";
         int i = 0;
         try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
-            String linea;
-
-            while ((linea = lector.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes.length == 4) {
+            while ((lector.readLine()) != null) {
                     i++;
-                }
-                else{System.err.println("Datos mal cargados en archivo.");}
-
             }
-//            JOptionPane.showMessageDialog(null, nombres);
-
         } catch (IOException e) {
             System.err.println("Error al cargar materias desde archivo: " + e.getMessage());
         }
 
         return i;
+    }
+
+
+    public void mostrarTodasLasMaterias(){
+        String mensaje = "Las materias son: \n ";
+        for (int i = 0; i < sizeM; i ++){
+            mensaje +=  "Nombre: " +materias[i].getNombre() + " Codigo: "+ materias[i].getCodigoMateria()+ "\n" ;
+        }
+        JOptionPane.showMessageDialog(null,mensaje);
+
     }
 }

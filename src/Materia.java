@@ -16,8 +16,6 @@ public class Materia {
         this.codigoMateria = 0;
     }
 
-
-
     public String getNombre() {
         return nombre;
     }
@@ -50,24 +48,6 @@ public class Materia {
         this.nota = nota;
     }
 
-    public void mostrarTodas(Materia[] materias){
-        String mensajematerias = "Lista Materias: \n";
-        for (int i = 0; i < 10; i++){
-            mensajematerias +=  "Nonbre: " +materias[i].getNombre() + " Codigo materia: "+ materias[i].codigoMateria+ "\n" ;
-        }
-        JOptionPane.showMessageDialog(null,mensajematerias);
-
-
-    }
-
-//    public float promedioTodas(Materia[] materias){
-//        float promedio = 0;
-//        for(int i = 0; i < materias.length; i++){
-//            promedio =+ materias[i].getNota();
-//        }
-//        promedio = promedio/materias.length;
-//        return promedio;
-//    }
 
 
 

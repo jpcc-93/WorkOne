@@ -6,7 +6,6 @@ public class Persona {
     private String genero;
 
 
-
     public String getNombre() {
         return nombre;
     }
