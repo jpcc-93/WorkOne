@@ -5,9 +5,12 @@ import java.io.IOException;
 public class ListaMat {
 
 
+
+
     public static Materia[] cargarMaterias() {
+        int sizeM = validarTamano();
         String nombreArchivo = "archivos/cargaMaterias.txt";
-        Materia[] materias = new Materia[11];
+        Materia[] materias = new Materia[sizeM];
         String nombres = "";
         try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
@@ -33,5 +36,28 @@ public class ListaMat {
         }
         return materias;
 
+    }
+
+    public static int validarTamano(){
+        String nombreArchivo = "archivos/cargaMaterias.txt";
+        int i = 0;
+        try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+
+            while ((linea = lector.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 4) {
+                    i++;
+                }
+                else{System.err.println("Datos mal cargados en archivo.");}
+
+            }
+//            JOptionPane.showMessageDialog(null, nombres);
+
+        } catch (IOException e) {
+            System.err.println("Error al cargar materias desde archivo: " + e.getMessage());
+        }
+
+        return i;
     }
 }

@@ -9,19 +9,19 @@ public class ListaAlum {
     int sizeL;
 
     public ListaAlum() {
-    sizeL = validarTamaño();
-    this.alumnos = new Alumno[sizeL];
-    Materia[] materias = new Materia[10];
-    materias = ListaMat.cargarMaterias();
-    for (int i = 0; i < sizeL; i ++){
-        alumnos[i] = new Alumno(materias);
-    }
+        sizeL = validarTamano();
+        this.alumnos = new Alumno[sizeL];
+        Materia[] materias;
+        materias = ListaMat.cargarMaterias();
+        for (int i = 0; i < sizeL; i ++) {
+            alumnos[i] = new Alumno(materias);
 
+        }
 
     }
 
 // se usa para validar la cantidad de datos que contiene el archivo plano
-    public int validarTamaño(){
+    public int validarTamano(){
         String nombreArchivo = "archivos/carga.txt";
         sizeL = 0;
         try(BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo)))
@@ -83,16 +83,10 @@ public class ListaAlum {
 
             }
 
-
-//            JOptionPane.showMessageDialog(null,nombres);
-//
-//            JOptionPane.showMessageDialog(null, alumnos[8].getNombre() +" Nota: "+ alumnos[8].getMaterias(9) );
-
         }catch (IOException e)
         {
             System.err.println("Error al cargar alumnos desde el archivo: " + e.getMessage());
         }
-        //return alumnos;
 
     }
 
