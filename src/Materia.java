@@ -6,14 +6,24 @@ public class Materia {
     private int codigoMateria;
     private String descripcion;
     private float nota;
+    private Materia liga;
 
 
 
 
     public Materia(){
+        liga = null;
         this.nota = 0;
         this.descripcion = "salon bonito";
         this.codigoMateria = 0;
+    }
+
+    public Materia getLiga() {
+        return liga;
+    }
+
+    public void setLiga(Materia liga) {
+        this.liga = liga;
     }
 
     public String getNombre() {

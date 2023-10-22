@@ -23,20 +23,23 @@ public class Main {
         ListaMat materias = new ListaMat();
         ListaAlum alumnos = new ListaAlum();
         ListaProf profesores = new ListaProf();
-        materias.cargarMaterias();
-        alumnos.cargarCurso(materias);
-        profesores.cargarProf(materias);
+        materias.cargarMateriasN();
+        alumnos.cargarCursoN(materias);
+        profesores.cargarProfN(materias);
+
+
+        //profesores.cargarProf(materias);
         System.out.println("carga ok");
 
 
         do{
             opcion = Integer.parseInt(JOptionPane.showInputDialog(menu));
             switch (opcion){
-                case 1: alumnos.mostrarTodoslosalumnos();
+                case 1: alumnos.mostrarTodoslosalumnosN();
                     break;
-                case 2: profesores.mostrarTodoslosprofesores();
+                case 2: profesores.mostrarTodoslosprofesoresN();
                     break;
-                case 3: materias.mostrarTodasLasMaterias();
+                case 3: materias.mostrarTodasLasMateriasN();
                     break;
                 case 4: alumnos.mostrarHganan();
                     break;

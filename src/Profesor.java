@@ -2,18 +2,19 @@ import javax.swing.*;
 
 public class Profesor extends Persona {
 
-    Materia m1 = null;
-    Materia m2 = null;
-    Materia m3 = null;
-    String nombre;
+    private Materia m1 = null;
+    private Materia m2 = null;
+    private Materia m3 = null;
+    private String nombre;
+
+    private Profesor liga;
+
 
     public Profesor() {
+        liga = null;
     }
 
-    public Profesor(Materia m1, Materia m2, Materia m3) {
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m3 = m3;
+    public  Profesor(Materia m1,Materia m2,Materia m3){
 
     }
 
@@ -27,6 +28,13 @@ public class Profesor extends Persona {
         this.nombre = "Prof. " + nombre;
     }
 
+    public Profesor getLiga() {
+        return liga;
+    }
+
+    public void setLiga(Profesor liga) {
+        this.liga = liga;
+    }
 
     public Materia getM1() {
         return m1;

@@ -2,8 +2,11 @@ import javax.swing.*;
 
 public class Alumno extends Persona {
 
-    float promedio;
+    private float promedio;
+    private ListaMat lMaterias;
     private Materia[] materias;
+
+    private Alumno liga;
 
     public Alumno(Materia[] materias) {
         this.materias = new Materia[materias.length];
@@ -18,8 +21,53 @@ public class Alumno extends Persona {
         }
 
 
+    }
 
+    public Alumno(ListaMat lMaterias){
+        liga = null;
+        Materia aux = new Materia();
+        aux = lMaterias.getCabeza();
+        this.lMaterias = new ListaMat();
+        Materia auxCop = null;
+        while (aux != null){
+            Materia nuevaM = new Materia();
+            nuevaM.setCodigoMateria(aux.getCodigoMateria());
+            nuevaM.setNombre(aux.getNombre());
+            nuevaM.setDescripcion(aux.getDescripcion());
+            if (auxCop == null){
+                this.lMaterias.setCabeza(nuevaM);
+                auxCop = nuevaM;
+            }
+            else{
+                auxCop.setLiga(nuevaM);
+                auxCop = nuevaM;
+            }
+            aux = aux.getLiga();
 
+        }
+
+    }
+
+    public ListaMat getlMaterias() {
+        return lMaterias;
+    }
+
+    public void setlMaterias(String nota, int codigo) {
+        Materia aux = lMaterias.getCabeza();
+        while (aux != null){
+            if (aux.getCodigoMateria() == codigo){
+                aux.setNota(Float.parseFloat(nota));
+            }
+            aux = aux.getLiga();
+        }
+    }
+
+    public Alumno getLiga() {
+        return liga;
+    }
+
+    public void setLiga(Alumno liga) {
+        this.liga = liga;
     }
 
     public float getPromedio() {
@@ -44,6 +92,18 @@ public class Alumno extends Persona {
         for (int i = 0; i < 10; i++){
             datos += "\n\n" + materias[i].getNombre() + " Nota = " + materias[i].getNota()
             + "\nDescripcion: " + materias[i].getDescripcion();
+        }
+        JOptionPane.showMessageDialog(null,"Alumno: " + getNombre() + datos + "\nPROMEDIO TOTAL: "+getPromedio());
+    }
+
+    public void mostrarnotasN(){
+        Materia aux = lMaterias.getCabeza();
+        String datos = "";
+        while (aux != null){
+            datos += "\n\n" + aux.getNombre() + " Nota = " + aux.getNota()
+                    + "\nDescripcion: " + aux.getDescripcion();
+            System.out.println(aux.getNombre());
+            aux = aux.getLiga();
         }
         JOptionPane.showMessageDialog(null,"Alumno: " + getNombre() + datos + "\nPROMEDIO TOTAL: "+getPromedio());
     }

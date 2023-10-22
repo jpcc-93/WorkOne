@@ -5,10 +5,13 @@ import java.io.IOException;
 
 public class ListaAlum {
 
+    private Alumno cabeza;
     Alumno[] alumnos;
     int sizeL;
 
     public ListaAlum() {
+        cabeza = null;
+
         sizeL = validarTamano();
         this.alumnos = new Alumno[sizeL];
         ListaMat materias = new ListaMat();
@@ -18,7 +21,15 @@ public class ListaAlum {
         }
     }
 
-// se usa para validar la cantidad de datos que contiene el archivo plano
+    public Alumno getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(Alumno cabeza) {
+        this.cabeza = cabeza;
+    }
+
+    // se usa para validar la cantidad de datos que contiene el archivo plano
     public int validarTamano(){
         String nombreArchivo = "archivos/carga.txt";
         sizeL = 0;
@@ -36,6 +47,58 @@ public class ListaAlum {
 
         return sizeL;
     }
+
+    public void cargarCursoN(ListaMat materias){
+
+        String nombreArchivo = "archivos/carga.txt";
+        Alumno anterior = null;
+
+
+        try(BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo)))
+        {
+            String linea;
+            int i = 0;
+            while((linea = lector.readLine()) != null){
+                String[] partes = linea.split(",");
+                if(partes.length == 14){
+                    //System.out.println(materias.getCabeza().getNota());
+                    Alumno alumno = new Alumno(materias);
+                    alumno.setNombre(partes[0]);
+                    alumno.setiD(partes[1]);
+                    alumno.setGenero(partes[2]);
+                    alumno.setTel(partes[3]);
+                    for(int j = 3,k = 0; j < 14 ; j++, k++){
+                        System.out.println(j);
+                        alumno.setlMaterias(partes[j],k);
+                        alumno.setPromedio(alumno.getPromedio() + Float.parseFloat(partes[j]));
+
+                        //System.out.println(alumno.getlMaterias().getCabeza().getNombre() +"esto: "+ alumno.getlMaterias().getCabeza().getNota() );
+                    }
+                    alumno.setPromedio(alumno.getPromedio()/10);
+                    if(i == 0){
+                        cabeza = alumno;
+                    }else{
+                        anterior.setLiga(alumno);
+                    }
+                    anterior = alumno;
+                    System.out.println(alumno.getNombre()+"  "+ alumno.getiD() +"   "+alumno.getGenero()+" " +alumno.getTel());
+
+                    i ++;
+
+                }
+
+
+
+            }
+
+        }catch (IOException e)
+        {
+            System.err.println("Error al cargar alumnos desde el archivo: " + e.getMessage());
+        }
+
+    }
+
+
 
     public void cargarCurso(ListaMat materias){
 
@@ -92,6 +155,16 @@ public class ListaAlum {
         String mensajeAlumnos = "Lista estudiantes: \n";
         for (int i = 0; i < 15; i++){
             mensajeAlumnos +=  "Nombre: " +alumnos[i].getNombre() + " Identificacion: "+ alumnos[i].getiD()+ "\n" ;
+        }
+        JOptionPane.showMessageDialog(null,mensajeAlumnos);
+    }
+
+    public void mostrarTodoslosalumnosN(){
+        Alumno aux = cabeza;
+        String mensajeAlumnos = "Lista estudiantes: \n";
+        while (aux != null){
+            mensajeAlumnos +=  "Nombre: " +aux.getNombre() + " Identificacion: "+ aux.getiD()+ "\n" ;
+            aux = aux.getLiga();
         }
         JOptionPane.showMessageDialog(null,mensajeAlumnos);
     }
