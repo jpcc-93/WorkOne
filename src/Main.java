@@ -41,13 +41,13 @@ public class Main {
                     break;
                 case 3: materias.mostrarTodasLasMateriasN();
                     break;
-                case 4: alumnos.mostrarHganan();
+                case 4: alumnos.mostrarHgananN();
                     break;
-                case 5: alumnos.mostrarFganan();
+                case 5: alumnos.mostrarFgananN();
                     break;
-                case 6: alumnos.mostrarpromedio38();
+                case 6: alumnos.mostrarpromedio38N();
                     break;
-                case 7: alumnos.buscar();
+                case 7: alumnos.buscarN();
                     break;
                 case 0:
                     opcion = 0;

@@ -34,6 +34,7 @@ public class Alumno extends Persona {
             nuevaM.setCodigoMateria(aux.getCodigoMateria());
             nuevaM.setNombre(aux.getNombre());
             nuevaM.setDescripcion(aux.getDescripcion());
+            nuevaM.setNota(aux.getNota());
             if (auxCop == null){
                 this.lMaterias.setCabeza(nuevaM);
                 auxCop = nuevaM;
@@ -98,11 +99,12 @@ public class Alumno extends Persona {
 
     public void mostrarnotasN(){
         Materia aux = lMaterias.getCabeza();
+        System.out.println(aux.getNombre() + "nota : " + aux.getNota());
         String datos = "";
         while (aux != null){
             datos += "\n\n" + aux.getNombre() + " Nota = " + aux.getNota()
                     + "\nDescripcion: " + aux.getDescripcion();
-            System.out.println(aux.getNombre());
+
             aux = aux.getLiga();
         }
         JOptionPane.showMessageDialog(null,"Alumno: " + getNombre() + datos + "\nPROMEDIO TOTAL: "+getPromedio());
