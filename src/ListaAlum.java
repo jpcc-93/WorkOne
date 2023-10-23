@@ -10,7 +10,6 @@ public class ListaAlum {
 
     public ListaAlum() {
         cabeza = null;
-
     }
 
     public Alumno getCabeza() {
@@ -25,7 +24,6 @@ public class ListaAlum {
 
         String nombreArchivo = "archivos/carga.txt";
         Alumno anterior = null;
-
 
         try(BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo)))
         {
