@@ -14,9 +14,6 @@ public class Profesor extends Persona {
         liga = null;
     }
 
-    public  Profesor(Materia m1,Materia m2,Materia m3){
-
-    }
 
     @Override
     public String getNombre() {
