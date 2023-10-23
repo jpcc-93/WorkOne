@@ -56,7 +56,7 @@ public class Alumno extends Persona {
     public void setlMaterias(String nota, int codigo) {
         Materia aux = lMaterias.getCabeza();
         while (aux != null){
-            if (aux.getCodigoMateria() == codigo){
+            if (aux.getCodigoMateria() == codigo+1){
                 aux.setNota(Float.parseFloat(nota));
             }
             aux = aux.getLiga();
